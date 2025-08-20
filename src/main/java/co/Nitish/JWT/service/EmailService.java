@@ -25,7 +25,7 @@ public class EmailService {
             message.setTo(toEmail);
             message.setSubject("Password Reset Request");
 
-            String resetLink = frontendUrl + "/reset-password?token=" + token;
+            String resetLink = "http://localhost:8080/reset-password.html?token=" + token;
 
             message.setText("Hello " + username + ",\n\n"
                     + "You requested to reset your password. Please click the link below to reset your password:\n\n"
@@ -33,7 +33,7 @@ public class EmailService {
                     + "This link will expire in 1 hour.\n\n"
                     + "If you didn't request this, please ignore this email.\n\n"
                     + "Thank you,\n"
-                    + "Your App Team");
+                    + "Your co.Nitish.JWT Team ");
 
             mailSender.send(message);
             System.out.println("Password reset email sent to: " + toEmail);

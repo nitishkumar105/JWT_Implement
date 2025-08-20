@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,12 +24,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/auth/**",
-                                "/api/password/**",  // This allows /forget, /reset, /validate-token, etc.
-                                "/api/test/public"
+                                "/api/password/**",
+                                "/api/test/public",
+                                "/reset-password**",        // ADD THIS
+                                "/reset-password.html**",   // ADD THIS
+                                "/static/**",               // ADD THIS
+                                "/**.html",                 // ADD THIS - allows all HTML files
+                                "/css/**",                  // ADD THIS - for CSS files
+                                "/js/**"                    // ADD THIS - for JavaScript files
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
