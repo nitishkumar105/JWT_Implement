@@ -15,7 +15,7 @@ public class PasswordController {
     @Autowired
     private PasswordService passwordService;
 
-    @PostMapping("/forgot")
+    @PostMapping("/forget")
     public ResponseEntity<?> forgotPassword(@RequestBody ForgetPasswordRequestDto request) {
         boolean result = passwordService.initiatePasswordReset(request.getEmail());
 
