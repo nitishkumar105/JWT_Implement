@@ -103,20 +103,3 @@ Test Endpoints
 GET /api/test/public - Public access endpoint
 
 GET /api/test/private - JWT-protected endpoint
-
-📁 Project Structure
-text
-src/
-├── main/
-│   ├── java/co/Nitish/JWT/
-│   │   ├── config/          # Security and application config
-│   │   ├── controller/      # REST API controllers
-│   │   ├── entity/          # Database entities
-│   │   ├── repository/      # Data access layer
-│   │   ├── security/        # JWT and security components
-│   │   ├── service/         # Business logic layer
-│   │   └── dto/            # Data transfer objects
-│   └── resources/
-│       ├── application.properties     # Configuration
-│       └── static/           # Frontend assets
-└── test/                     # Test cases
