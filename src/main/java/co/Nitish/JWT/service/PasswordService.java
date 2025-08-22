@@ -4,6 +4,7 @@ import co.Nitish.JWT.entity.PasswordResetToken;
 import co.Nitish.JWT.entity.User;
 import co.Nitish.JWT.repository.PasswordResetTokenRepository;
 import co.Nitish.JWT.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.apache.commons.lang3.RandomStringUtils; // ADD THIS IMPORT
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,7 +26,7 @@ public class PasswordService {
 
     @Autowired
     private EmailService emailService;
-
+     @Transactional
     public boolean initiatePasswordReset(String email) {
         Optional<User> userOptional = userRepository.findByEmail(email);
 
@@ -49,7 +50,7 @@ public class PasswordService {
         // Return true even if email not found (for security)
         return true;
     }
-
+  @Transactional
     public boolean resetPassword(String token, String newPassword) {
         Optional<PasswordResetToken> resetToken = tokenRepository.findByToken(token);
 
